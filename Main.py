@@ -1,4 +1,5 @@
 from go import *
+from visualize import draw_game
 from draw_board import draw
 from Random_bot import random_bot
 # Plays Go with two random bots. Outputs the winner of the game when run.
@@ -6,18 +7,18 @@ from Random_bot import random_bot
 # so the board will look strange.
 
 
-def play_game(player1, player2, game):
-    while len(game.get_legal_moves())>0:
+def play_game(player1, player2, game, debug=False):
+    while len(game.get_legal_moves()) > 0:
         move_p1 = player1.get_move(game)
-
         move_p2 = player2.get_move(game)
 
     winner = game.get_winner()
     if winner == 1:
-        print('Player 1 wins')
+        print('Black wins')
     else:
-        print('Player 2 wins')
-    #draw(game)
+        print('White wins')
+    draw(game)
+    draw_game(game)
 
 def main():
     game = GameState()
@@ -25,6 +26,7 @@ def main():
     player2 = random_bot('player 2')
 
     play_game(player1, player2, game)
+
 
 if __name__ == '__main__':
     main()
