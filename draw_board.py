@@ -1,5 +1,6 @@
 import graphics
 
+
 CELL_SIZE = 32
 MARGIN = CELL_SIZE//2
 
@@ -8,9 +9,10 @@ def draw(game):
 	#it draws the board both rotated and flipped (somehow)
 	#that doesn't change the anything about the score or game geometry, so it should be fine
 	win = graphics.GraphWin("Go results", 19 * CELL_SIZE, 19 * CELL_SIZE)
-	
+	win.setBackground('goldenrod')
 	bg = graphics.Rectangle(graphics.Point(0, 0), graphics.Point(19*CELL_SIZE, 19*CELL_SIZE))
 	bg.setFill(graphics.color_rgb(247, 164, 64))
+
 	
 	for y in range(19):
 		for x in range(19):
@@ -28,5 +30,7 @@ def draw(game):
 					print("idk man")
 					
 				stone.draw(win)
-				
+
+
+
 	win.getMouse()
