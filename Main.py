@@ -1,6 +1,5 @@
 from go import *
 from visualize import draw_game
-from draw_board import draw
 from Random_bot import random_bot
 # Plays Go with two random bots. Outputs the winner of the game when run.
 # Uncomment line 19 to see the board. Currently does not remove captured pieces
@@ -17,7 +16,6 @@ def play_game(player1, player2, game, debug=False):
         print('Black wins')
     else:
         print('White wins')
-    draw(game)
     draw_game(game)
 
 def main():
