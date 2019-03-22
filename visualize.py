@@ -9,7 +9,6 @@ t = Turtle()
 t.hideturtle()
 # t.speed(0)
 
-
 def draw_board():
     # horizontal lines
     t.seth(0)
@@ -40,14 +39,12 @@ def draw_board():
     draw_starpoint(15, 9)
     draw_starpoint(15, 15)
 
-
 def draw_starpoint(x, y):
     t.penup()
     t.setx(x*32+16)
     t.sety(y*32+16)
     t.pendown()
     t.dot(6)
-
 
 def draw_stone(x, y, color):
     t.penup()
@@ -93,7 +90,6 @@ def draw_state(board):
 def draw_game(game):
     window.tracer(0,0)
     draw_state(game.board)
-
     window.update()
     window.exitonclick()
 
@@ -110,9 +106,8 @@ def update_state(board, previousboard):
                     draw_stone(x, y, board[x][y])
 
 
-def animate_game(game, delay=0.01):
+def animate_game(game, delay=False):
     window.tracer(0, 0)
-
     firstboard = True
     previousboard = None
     for board in game.boardhistory:
@@ -123,12 +118,6 @@ def animate_game(game, delay=0.01):
             update_state(board, previousboard)
         previousboard = board
         window.update()
-        sleep(delay)
-
-    #draw_state(game.boardhistory[0])
-
+        if delay is not False:
+            sleep(delay)
     window.exitonclick()
-
-
-# if __name__ == "__main__":
-#     draw_game(None)

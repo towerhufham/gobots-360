@@ -1,16 +1,14 @@
-from go import *
 from random import choice
 
+class RandomBot:
+    def __init__(self):
+        self.color = None
 
-class random_bot:
+    def set_color(self, c):
+        self.color = c
 
-    def __init__(self, player):
-        self.player = player
-
-    def get_move(self, game):
-
+    def do_move(self, game):
         moves = game.get_legal_moves()
-        # print('')
         if len(moves) > 0:
             placement = choice(moves)
             game.do_move(placement)
