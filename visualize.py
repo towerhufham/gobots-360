@@ -1,4 +1,5 @@
 from turtle import *
+from time import sleep
 
 window = Screen()
 window.setup(640, 640)
@@ -59,18 +60,33 @@ def draw_stone(x, y, color):
         t.dot(32, "#000000")
 
 
-def draw_game(game):
-    t._tracer(0, 0)
-
+def draw_state(board):
     draw_board()
     for y in range(19):
         for x in range(19):
-            state = game.board[x][y]
+            state = board[x][y]
             if state != 0:
                 draw_stone(x, y, state)
 
-    t._update()
+def draw_game(game):
+    window.tracer(0,0)
+    draw_state(game.board)
+
+    window.update()
     window.exitonclick()
+
+def animate_game(game, delay=0.1):
+    window.tracer(0, 0)
+
+    for board in game.boardhistory:
+        draw_state(board)
+        window.update()
+        sleep(delay)
+
+    #draw_state(game.boardhistory[0])
+
+    window.exitonclick()
+
 
 # if __name__ == "__main__":
 #     draw_game(None)

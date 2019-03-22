@@ -23,6 +23,11 @@ class GameState(object):
         self.komi = komi  # Komi is number of extra points WHITE gets for going 2nd
         self.handicaps = []
         self.history = []
+
+        ##############
+        self.boardhistory = [] #this is for our visualization file
+        ##############
+
         self.num_black_prisoners = 0
         self.num_white_prisoners = 0
         self.is_end_of_game = False
@@ -192,6 +197,7 @@ class GameState(object):
         other.ko = self.ko
         other.handicaps = list(self.handicaps)
         other.history = list(self.history)
+        other.boardhistory = list(self.boardhistory) #this probably wll work?
         other.num_black_prisoners = self.num_black_prisoners
         other.num_white_prisoners = self.num_white_prisoners
         other.enforce_superko = self.enforce_superko
@@ -244,6 +250,7 @@ class GameState(object):
         account the fact that history starts with BLACK when there are no
         handicaps or with WHITE when there are.
         """
+        #no boardhistory stuff here yet
         if len(self.handicaps) == 0 and self.current_player == BLACK:
             player_history = self.history[0::2]
         elif len(self.handicaps) > 0 and self.current_player == WHITE:
@@ -505,6 +512,7 @@ class GameState(object):
         for action in actions:
             self.do_move(action, BLACK)
         self.history = []
+        #do NOT update boardhistory for this one
 
     def get_current_player(self):
         """Returns the color of the player who will make the next move.
@@ -562,6 +570,7 @@ class GameState(object):
             # next turn
             self.current_player = -color
             self.history.append(action)
+            self.boardhistory.append(np.copy(self.board)) #TODO: make this trigger only if debug
             self.__legal_move_cache = None
         else:
             self.current_player = reset_player
