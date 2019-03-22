@@ -59,6 +59,12 @@ def draw_stone(x, y, color):
     elif color == +1:
         t.dot(32, "#000000")
 
+def remove_stone(x, y):
+    t.penup()
+    t.setx(x * 32 + 16)
+    t.sety(y * 32 + 16)
+    t.pendown()
+    t.dot(32, "#dcb35c")
 
 def draw_state(board):
     draw_board()
@@ -75,11 +81,31 @@ def draw_game(game):
     window.update()
     window.exitonclick()
 
-def animate_game(game, delay=0.1):
+def update_state(board, previousboard):
+    for y in range(19):
+        for x in range(19):
+
+            if board[x][y] != previousboard[x][y]:
+                #remove stone
+                if board[x][y] == 0:
+                    remove_stone(x, y)
+                else:
+                    # draw new stone
+                    draw_stone(x, y, board[x][y])
+
+
+def animate_game(game, delay=0.01):
     window.tracer(0, 0)
 
+    firstboard = True
+    previousboard = None
     for board in game.boardhistory:
-        draw_state(board)
+        if firstboard:
+            draw_state(board)
+            firstboard = False
+        else:
+            update_state(board, previousboard)
+        previousboard = board
         window.update()
         sleep(delay)
 
