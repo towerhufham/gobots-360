@@ -2,9 +2,6 @@ from go import *
 from visualize import animate_game, draw_game
 from RandomBot import RandomBot
 # Plays Go with two random bots. Outputs the winner of the game when run.
-# Uncomment line 19 to see the board. Currently does not remove captured pieces
-# so the board will look strange.
-
 
 def play_game(player1, player2, game, debug=False):
     player1.set_color(BLACK)
@@ -29,9 +26,7 @@ def main():
     game = GameState()
     player1 = RandomBot()
     player2 = RandomBot()
-
     play_game(player1, player2, game)
-    #print(game.boardhistory)
 
 if __name__ == '__main__':
     main()
