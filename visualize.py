@@ -60,11 +60,27 @@ def draw_stone(x, y, color):
         t.dot(32, "#000000")
 
 def remove_stone(x, y):
+    #write over stone shape with background color
     t.penup()
     t.setx(x * 32 + 16)
     t.sety(y * 32 + 16)
     t.pendown()
-    t.dot(32, "#dcb35c")
+    t.dot(33, "#dcb35c")
+    #redraw grid segment
+    #vertical line
+    t.penup()
+    t.setx(x * 32 - 1)
+    t.sety(y * 32 + 16)
+    t.seth(0)
+    t.pendown()
+    t.forward(33)
+    #horizontal line
+    t.penup()
+    t.setx(x * 32 + 16)
+    t.sety(y * 32 - 1)
+    t.seth(90)
+    t.pendown()
+    t.forward(33)
 
 def draw_state(board):
     draw_board()
