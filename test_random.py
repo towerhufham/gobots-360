@@ -2,7 +2,7 @@ from go import *
 import csv
 #from visualize import animate_game, draw_game
 from RandomBot import RandomBot
-from Test_strategyV1 import RandomBot2
+from Test_strategyV1 import Test_Bot
 # Plays Go with two random bots. Outputs the winner of the game when run.
 
 def play_game(player1, player2, game, debug=False):
