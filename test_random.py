@@ -34,7 +34,7 @@ def main():
     count = 100
     while count > 0:
         game = GameState()
-        player1 = RandomBot2()
+        player1 = Test_Bot()
         player2 = RandomBot()
         winner = play_game(player1, player2, game)
         print(winner)
