@@ -103,3 +103,11 @@ def find_connection(moves, game, color):
         return connected
     else:
         return None
+
+def remove_suicide(moves, game):
+# Takes in a list of legal_moves and a Go game object and returns
+# a list of moves that do not contain any suicidal moves
+    for move in moves:
+        if game.is_suicide(move) == True:
+            moves.pop(moves.index(move))
+    return moves

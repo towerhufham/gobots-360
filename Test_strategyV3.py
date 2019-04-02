@@ -26,7 +26,7 @@ class Combination_Bot:
 
             else:
                 for move in moves:
-                    if game.is_suicide == True:
+                    if game.is_suicide(move) == True:
                         moves.pop(moves.index(move))
                 if len(half) != 0:
                     placement = self.find_connection(half,game)

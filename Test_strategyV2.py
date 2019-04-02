@@ -15,7 +15,7 @@ class Connection_Bot:
         moves = game.get_legal_moves()
         if len(moves) != 0:
             for move in moves:
-                if game.is_suicide == True:
+                if game.is_suicide(move) == True:
                     moves.pop(moves.index(move))
             if self.start_flag == 0:
                 placement = self.get_start_point(moves)
