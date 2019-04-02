@@ -1,6 +1,6 @@
 from random import choice
 
-class Test_Bot:
+class HighLow_Bot:
     def __init__(self, move_count=0):
         self.color = None
         self.move_count = move_count
