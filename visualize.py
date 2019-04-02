@@ -7,7 +7,7 @@ window.setworldcoordinates(0, 616, 616, 0)
 window.bgcolor("#dcb35c")
 t = Turtle()
 t.hideturtle()
-# t.speed(0)
+#t.speed()
 
 def draw_board():
     # horizontal lines
@@ -106,18 +106,32 @@ def update_state(board, previousboard):
                     draw_stone(x, y, board[x][y])
 
 
-def animate_game(game, delay=False):
+def animate_game(game, delay=False, step_through=False):
     window.tracer(0, 0)
     firstboard = True
     previousboard = None
-    for board in game.boardhistory:
-        if firstboard:
-            draw_state(board)
-            firstboard = False
-        else:
-            update_state(board, previousboard)
-        previousboard = board
-        window.update()
-        if delay is not False:
-            sleep(delay)
-    window.exitonclick()
+    if step_through == True:
+        for board in game.boardhistory:
+            step =input('Press anything for Next Move...')
+            if firstboard:
+                draw_state(board)
+                firstboard = False
+            else:
+                update_state(board, previousboard)
+            previousboard = board
+            window.update()
+            if delay is not False:
+                sleep(delay)
+        window.exitonclick()
+    else:
+        for board in game.boardhistory:
+            if firstboard:
+                draw_state(board)
+                firstboard = False
+            else:
+                update_state(board, previousboard)
+            previousboard = board
+            window.update()
+            if delay is not False:
+                sleep(delay)
+        window.exitonclick()
