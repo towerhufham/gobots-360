@@ -57,3 +57,49 @@ def get_star_point(moves):
     placement = choice(star_points)
 
     return placement
+
+
+def find_connection(moves, game, color):
+# takes in a list of legal_moves and a Go game object. Returns
+# a list of moves that are connected to other pieces.
+
+    connected = []
+    if color == 1:
+        for i in moves:
+            liberties = []
+            x, y = i
+            liberty_1 = (x + 1, y)
+            liberties.append(liberty_1)
+            liberty_2 = (x - 1, y)
+            liberties.append(liberty_2)
+            liberty_3 = (x, y + 1)
+            liberties.append(liberty_3)
+            liberty_4 = (x, y - 1)
+            liberties.append(liberty_4)
+            for l in liberties:
+                x1, y1 = l
+                if x1 < 19 and x1 > 0 and y1 < 19 and y1 > 0:
+                    if game.board[x1, y1] == 1:
+                        connected.append(i)
+    else:
+        for i in moves:
+            liberties = []
+            x, y = i
+            liberty_1 = (x + 1, y)
+            liberties.append(liberty_1)
+            liberty_2 = (x - 1, y)
+            liberties.append(liberty_2)
+            liberty_3 = (x, y + 1)
+            liberties.append(liberty_3)
+            liberty_4 = (x, y - 1)
+            liberties.append(liberty_4)
+            for l in liberties:
+                x1, y1 = l
+                if x1 < 19 and x1 > 0 and y1 < 19 and y1 > 0:
+                    if game.board[x1, y1] == -1:
+                        connected.append(i)
+
+    if len(connected) != 0:
+        return connected
+    else:
+        return None
