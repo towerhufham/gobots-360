@@ -5,6 +5,7 @@ BLACK = +1
 EMPTY = 0
 PASS_MOVE = None
 
+DRAW_BOARD_ON_FAIL = True
 
 class GameState(object):
     """State of a game of Go and some basic functions to interact with it
@@ -23,6 +24,8 @@ class GameState(object):
         self.komi = komi  # Komi is number of extra points WHITE gets for going 2nd
         self.handicaps = []
         self.history = []
+
+        self.errorMsg = ""
 
         ##############
         self.boardhistory = [] #this is for our visualization file
@@ -279,14 +282,19 @@ class GameState(object):
             return True
         (x, y) = action
         if not self._on_board(action):
+            self.errorMsg = "Trying to place stone off board!"
             return False
         if self.board[x][y] != EMPTY:
+            self.errorMsg = "Trying to place stone on top of another!"
             return False
         if self.is_suicide(action):
+            self.errorMsg = "Trying to perform suicidal move!"
             return False
         if action == self.ko:
+            self.errorMsg = "Move would cause ko!"
             return False
         if self.enforce_superko and self.is_positional_superko(action):
+            self.errorMsg = "Move would cause superko!"
             return False
         return True
 
@@ -574,7 +582,10 @@ class GameState(object):
             self.__legal_move_cache = None
         else:
             self.current_player = reset_player
-            raise IllegalMove(str(action))
+            if DRAW_BOARD_ON_FAIL:
+                from visualize import draw_game
+                draw_game(self)
+            raise IllegalMove(str(action), self.errorMsg)
         # Check for end of game
         if len(self.history) > 1:
             if self.history[-1] is PASS_MOVE and self.history[-2] is PASS_MOVE \
