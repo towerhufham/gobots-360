@@ -50,7 +50,7 @@ class ConnectionBot:
             return placement
         else:
             placement = self.separation(moves, game)
-            if self.move_count % 10 == 0:  # check to see number of separation placements has been reached
+            if self.move_count % 12 == 0:  # check to see number of separation placements has been reached
                 self.separation_flag *= -1  # flips flag to indicate connection placements should occur.
             return placement
 
