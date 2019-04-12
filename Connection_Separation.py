@@ -20,6 +20,7 @@ class ConnectionBot:
         placement = self.get_move(game)
         self.move_count += 1  # updates the move count
         game.do_move(placement)
+        return placement
 
     def get_move(self, game):
         # Helper function for get move. Checks several flags to determine
