@@ -1,5 +1,5 @@
 from Go_functions import *
-
+from time import time
 
 class ConnectionBot:
 
@@ -14,12 +14,21 @@ class ConnectionBot:
         # sets the color of the player
         self.color = c
 
+    def name(self):
+
+        return "Connection and Separation Bot"
+
     def do_move(self, game):
         # updates the game object with the chosen move
         # calls the helper function self.get_move to get the placement
+        #start = time()
         placement = self.get_move(game)
+        #end = time()
         self.move_count += 1  # updates the move count
         game.do_move(placement)
+
+        #raw_moves = game.get_legal_moves()
+        #print("N = " + str(len(raw_moves)) + "T =" + str((end - start)))
         return placement
 
     def get_move(self, game):
@@ -27,7 +36,11 @@ class ConnectionBot:
         # the flow of the program. returns a placement
 
         raw_moves = game.get_legal_moves()
+
         moves = self.remove_eyes(raw_moves, game)
+
+
+
 
         if len(moves) != 0:
             if self.start_flag == 0:

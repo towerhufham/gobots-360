@@ -10,6 +10,9 @@ class LifeDeathBot:
     def set_color(self, c):
         self.color = c
 
+    def name(self):
+        return "Life and Death Bot"
+
     def getBlockPieces(self, home, board):
         #blocks are unkillable structures made with as few stones as possible
         #they are shaped like this:

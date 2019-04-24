@@ -6,6 +6,8 @@ class RandomBot:
 
     def set_color(self, c):
         self.color = c
+    def name(self):
+        return "RandomBot"
 
     def do_move(self, game):
         moves = game.get_legal_moves()
