@@ -4,4 +4,4 @@ Implementation of several Go playing algorithms. All Go game rules and logic han
 
 Life and Death: Tower Hufham,
 Connection and Separation: Richard Chambers,
-High and Low: Eryn Vance,
+High and Low: Eryn Vance
